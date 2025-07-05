@@ -2,14 +2,16 @@
 import os
 import shutil
 
-img_count = audio_count = video_count = doc_count = 0
-
 class File_Automation():
     
 
     def __init__(self,upath):
         
         self.path=upath
+        self.img_count = 0
+        self.audio_count = 0
+        self.video_count = 0
+        self.doc_count = 0
         self.audio_extensions = ['.mp3', '.wav', '.aac']
         self.image_extensions = ['.png', '.jpg','.jpeg']
         self.video_extensions= [ '.mp4', '.mov', '.avi' ,'.mkv']
@@ -34,7 +36,7 @@ class File_Automation():
                 try:
                     shutil.move(fpath,path)
                     print(f'Moved {_} Successfully to Images')
-                    img_count += 1
+                    self.img_count += 1
                 except Exception as e:
                     print(e)
 
@@ -45,7 +47,7 @@ class File_Automation():
                 try:
                     shutil.move(fpath,path)
                     print(f'Moved {_}  Successfully to Audio')
-                    audio_count += 1
+                    self.audio_count += 1
                 except Exception as e:
                     print(e)
 
@@ -56,7 +58,7 @@ class File_Automation():
                 try:
                     shutil.move(fpath,path)
                     print(f'Moved {_} Successfully to Video')
-                    video_count+=1
+                    self.video_count+=1
                 except Exception as e:
                     print(e)
 
@@ -67,15 +69,15 @@ class File_Automation():
                 try:
                     shutil.move(fpath,path)
                     print(f'Moved {_} Successfully to Docuement')
-                    doc_count+=1
+                    self.doc_count+=1
                 except Exception as e:
                     print(e)
     def total(self):  
         print("\nSummary:")
-        print(f"📸 Images moved: {img_count}")
-        print(f"🎵 Audio moved: {audio_count}")
-        print(f"🎬 Video moved: {video_count}")
-        print(f"📄 Documents moved: {doc_count}")
+        print(f"📸 Images moved: {self.img_count}")
+        print(f"🎵 Audio moved: {self.audio_count}")
+        print(f"🎬 Video moved: {self.video_count}")
+        print(f"📄 Documents moved: {self.doc_count}")
 
 
                     
