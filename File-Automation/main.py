@@ -8,14 +8,18 @@ class File_Automation():
     def __init__(self,upath):
         
         self.path=upath
+        self.comp_count=0
+        self.soft_count=0
         self.img_count = 0
         self.audio_count = 0
         self.video_count = 0
         self.doc_count = 0
+        self.software_extensions=['.exe','.msi']
+        self.compressed_extensions =['.zip','.rar']
         self.audio_extensions = ['.mp3', '.wav', '.aac']
         self.image_extensions = ['.png', '.jpg','.jpeg']
         self.video_extensions= [ '.mp4', '.mov', '.avi' ,'.mkv']
-        self.document_extensions=['.txt', '.docx', '.pdf']
+        self.document_extensions=['.txt', '.docx', '.pdf','.xlsx','.pptx']
     def current(self):  
         current_directory = os.getcwd()
         print(f"The Current Directory : {current_directory}")
@@ -72,12 +76,35 @@ class File_Automation():
                     self.doc_count+=1
                 except Exception as e:
                     print(e)
+
+            elif self.ext.lower() in self.compressed_extensions :
+                path=os.path.join(self.path,'Compressed')
+                os.makedirs(path, exist_ok=True)
+                try:
+                    shutil.move(fpath,path)
+                    print(f'Moved {_} Successfully to Compressed')
+                    self.comp_count+=1
+                except Exception as e:
+                    print(e)
+
+            elif self.ext.lower() in self.software_extensions :
+                path=os.path.join(self.path,'Software')
+                os.makedirs(path, exist_ok=True)
+                try:
+                    shutil.move(fpath,path)
+                    print(f'Moved {_} Successfully to software')
+                    self.soft_count+=1
+                except Exception as e:
+                    print(e)        
     def total(self):  
         print("\nSummary:")
         print(f"📸 Images moved: {self.img_count}")
         print(f"🎵 Audio moved: {self.audio_count}")
         print(f"🎬 Video moved: {self.video_count}")
         print(f"📄 Documents moved: {self.doc_count}")
+        print(f"📄 compressed items moved: {self.comp_count}")
+        print(f"💿 Software moved: {self.soft_count}")
+        
 
 
                     
