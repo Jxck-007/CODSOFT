@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<center>
+<h1>CONTACT API</h1>
+</center>
+{% endblock %}
+
+
+
+{% block body %}
+
+{% with msg= get_flashed_messages() %}
+    {% if msg %}
+        {% for _ in msg %}
+            <p>{{_}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form action="add" method="post">
+    <Label for="Name">Enter The Name:</Label><input type="text" id="Name" name="Name" placeholder="Name" required><br>
+    <label for="Number">Enter The Number:</label><input type="tel" id ="Number" name="Number" placeholder="Number" inputmode="numeric" minlength="10" maxlength="10" pattern="[0-9]*" required><br>
+    <label for="Email">Enter The Email:</label><input type="email" id="Email" name="Email" inputmode="email" placeholder="Email"><br>
+    <label for="Address">Enter The Address:</label><input type="Address" id="Address" name="Address" placeholder="Address" ><br>
+    <button type="submit" value="Save" id="Submit">Save</button>
+    <button type="reset" value="reset" id="Reset">Reset</button>
+</form>
+
+{% endblock %}

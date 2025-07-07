@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% with msg= get_flashed_messages() %}
+    {% if msg %}
+        {% for _ in msg %}
+            <p>{{_}}</p>
+        {% endfor %}
+    {% endif %}
+{%  endwith %}
+
+ <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+    <tr>
+    <th>Contact</th>
+    <th>Name</th>
+    <th>Number</th>
+    <th>Email</th>
+    <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for _ in contact %}
+       
+            <tr>
+                <td>{{_.id}}</td>
+                <td>{{_.name}}</td>
+                <td>{{_.number}}</td>
+                <td>{{_.email}}</td>
+                <td>{{_.address}}</td>
+            </tr>
+        
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
