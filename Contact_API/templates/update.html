@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete Contact {%endblock%}
+{% block content %}
+{% with msg=get_flashed_messages()%}
+    {% if msg %}
+        {% for _ in msg %}
+            <p>{{_}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<form action="{{url_for('manage')}}" method="get">
+    <label for="search">Search Bar</label>
+    <input type="text" name="search" placeholder="search by name or email">
+    <button type="submit" id="Submit"> Search </button>
+    <button type="reset" id="Reset">Clear</button>
+</form>
+{% if method == 'get' %}
+    <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+    <tr>
+    <th>Contact</th>
+    <th>Name</th>
+    <th>Number</th>
+    <th>Email</th>
+    <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+
+{% for _ in contact %}
+       
+            <tr>
+                <td>{{_.id}}</td>
+                <td>{{_.name}}</td>
+                <td>{{_.number}}</td>
+                <td>{{_.email}}</td>
+                <td>{{_.address}}</td>    
+            </tr>
+ 
+        {% endfor %}
+    </tbody>
+    </table>
+{% endif %}   
+<form method="POST" action="{{ url_for('toupdate', id=contact.id) }}">
+    <input type="text" name="Name" value="{{ contact.name }}" required>
+    <input type="text" name="Number" value="{{ contact.number }}" required>
+    <input type="email" name="Email" value="{{ contact.email }}">
+    <input name="Address" type="Address" value="{{contact.address }}">
+    <button type="submit" id="Submit">Update</button>
+    <button type="reset" id="Reset">Reset</button>
+</form>
+
+
+
+
+
+{% endblock %}

@@ -10,6 +10,13 @@
     {% endif %}
 {%  endwith %}
 
+<form method="get" action="{{url_for('view')}}">
+    <label for="search">Search Bar</label>
+    <input type="text" name="search" placeholder="search by name or email">
+    <button type="submit" id="Submit"> Search </button>
+    <button type="reset" id="Reset">Clear</button>
+</form>
+
  <table border="1" cellpadding="8" cellspacing="0">
     <thead>
     <tr>

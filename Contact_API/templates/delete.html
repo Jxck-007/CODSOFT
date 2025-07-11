@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete Contact {%endblock%}
+{% block content %}
+{% with msg=get_flashed_messages()%}
+    {% if msg %}
+        {% for _ in msg %}
+            <p>{{_}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<form action="{{ url_for('delete')}}" method="post" >
+    <label for="delete">Enter The Contact ID</label>
+    <input id="delete" name="delete" placeholder="Contact ID" required>
+    <button id="Submit">Submit</button>
+    <Button id="Reset" type="reset">Cancel</Button>
+</form>
+
+{% endblock %}

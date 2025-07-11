@@ -71,6 +71,7 @@ header{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .nav{
+  box-flex: var(#000000);
   display: flex;
   flex-direction: row;
   align-items: start;

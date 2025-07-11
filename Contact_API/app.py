@@ -43,10 +43,57 @@ def add():
 
 @app.route("/view",methods=['GET'])
 def view():
-    if request.method =='GET':
+    search=request.args.get("search")
+    if search:
+        contact= Contact.query.filter(Contact.name.contains(search)|Contact.email.contains(search)).order_by(Contact.name).all()
+    elif request.method =='GET':
         flash("Viewing All Contact")
-        contact=Contact.query.all()
+        contact=Contact.query.order_by(Contact.name).all()
     return render_template('view.html',contact=contact)
+
+@app.route("/manage",methods=["GET"])
+def manage():
+    search=request.args.get("search")
+    if search:
+        contact= Contact.query.filter(Contact.name.contains(search)|Contact.email.contains(search)).order_by(Contact.name).all()
+    elif request.method =='GET':
+        contact=Contact.query.order_by(Contact.name).all()
+        return render_template("manage.html",contact=contact)
+    return render_template("manage.html") 
+
+@app.route("/delete/<int:id>",methods=["GET","DELETE"])
+def todelete(id):
+    Dcontact=Contact.query.get_or_404(id)
+    try:
+        db.session.delete(Dcontact)
+        db.session.commit()
+        flash("The Task Has been Deleted")
+        if request.method=="DELETE":    
+            return jsonify({"Success":True})
+        return redirect(url_for('manage'))
+    except:
+        if request.method=="DELETE":
+            return jsonify({"Success":False}),500
+        return "There was a prob deleting that task"
+
+@app.route("/update/<int:id>",methods=["GET","POST"])
+def toupdate(id):
+    contact=Contact.query.get_or_404(id)
+    if request.method=="POST":    
+        contact.name=request.form['Name']
+        contact.email=request.form['Email']
+        contact.number=request.form['Number']
+        contact.address=request.form['Address']
+        try:
+            db.session.commit()
+            flash("Contact updated Successfully")
+            return redirect (url_for('manage'))
+        except:
+            flash("Error Occured While Updating Your Contact")
+            return redirect(url_for('toupdate',id=contact.id))
+    return render_template("update.html",contact=contact)
+
+
 
 if __name__=='__main__':
     with app.app_context():
