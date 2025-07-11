@@ -126,5 +126,5 @@ Git & GitHub
 
 👨‍💻 GitHub: @Jxck-007
 
-💼 LinkedIn: Jegadeesh Nandakumar (https://www.linkedin.com/in/jegadeesh-nandakumar) 
+💼 LinkedIn: [Jegadeesh Nandakumar] (https://www.linkedin.com/in/jegadeesh-nandakumar) 
 
