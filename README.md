@@ -124,7 +124,6 @@ Git & GitHub
 
 🔗 Connect With Me
 
-👨‍💻 GitHub: @Jxck-007
-
-💼 LinkedIn: [Jegadeesh Nandakumar] (https://www.linkedin.com/in/jegadeesh-nandakumar) 
+GitHub: Jxck-007(https://github.com/Jxck-007/)  
+LinkedIn: [Jegadeesh-Nandakumar](https://www.linkedin.com/in/jegadeesh-nandakumar)
 
